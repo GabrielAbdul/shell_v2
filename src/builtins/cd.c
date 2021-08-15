@@ -17,7 +17,10 @@ int cd(command_t *node)
 	{
 		HOME = _getenv("HOME");
 		if (!HOME)
+		{
+			free(cwd);
 			return (0);
+		}
 		status = chdir(HOME);
 	}
 	else if (_strcmp(node->args[1], "-") == 0)
