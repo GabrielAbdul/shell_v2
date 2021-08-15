@@ -7,7 +7,7 @@
  */
 int myexit(char **args)
 {
-	int status, i;
+	int status;
 
 	if (args[1] == NULL)
 	{
@@ -15,9 +15,6 @@ int myexit(char **args)
 		return (0);
 	}
 
-	for (i = 0; args[1][i]; i++)
-		if (i < 48 || i > 57)
-			dprintf(STDERR_FILENO, "hsh: %d: Illegal number: %s", line_no, args[1]);
 	running = false;
 	status = atoi(args[1]);
 	return (status);
