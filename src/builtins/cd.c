@@ -29,27 +29,22 @@ int cd(command_t *node)
 		if (!OLDPWD)
 		{
 			printf("%s\n", cwd);
+			free(cwd);
 			return (0);
 		}
 		status = chdir(OLDPWD);
-		print_dir = true;
+		printf("%s\n", OLDPWD);
 	}
 	else
-	{
 		status = chdir(node->args[1]);
-	}
 
 	if (status == -1)
-	{
 		dprintf(STDERR_FILENO, err, program_name, line_no, node->args[1]);
-	}
 	else
-	{
 		_setenv("OLDPWD", cwd);
-		free(cwd);
-	}
 
 	if (print_dir == true)
 		_dprintf(STDOUT_FILENO, "%s\n", OLDPWD);
+	free(cwd);
 	return (status);
 }
