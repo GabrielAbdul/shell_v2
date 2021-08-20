@@ -143,16 +143,6 @@ command_t *create_command_list(char *commands_string)
 	/* create node with info */
 	for (i = 0; commands[i]; i++)
 	{
-		for (j = 0; commands[i][j]; j++)
-		{
-			if (commands[i][j] == '#')
-			{
-				con = 1;
-				break;
-			}
-		}
-		if (con == 1)
-			continue;
 		if (i == 0)
 		{
 			head = create_command_node(commands[i], NULL);
