@@ -10,9 +10,7 @@ int execute_command_list(command_t *commands)
 	command_t *tmp;
 	pid_t pid;
 	char *path = NULL;
-	int status;
-	int stdin_cpy = dup(STDIN_FILENO);
-	int stdout_cpy = dup(STDOUT_FILENO);
+	int stdin_cpy = dup(STDIN_FILENO), stdout_cpy = dup(STDOUT_FILENO), status;
 
 	for (tmp = commands; running && tmp; tmp = tmp->next)
 	{
@@ -43,8 +41,7 @@ int execute_command_list(command_t *commands)
 			}
 			wait(&status);
 		}
-		free(path);
-		path = NULL;
+		free(path), path = NULL;
 		close(STDIN_FILENO), close(STDOUT_FILENO);
 		close(tmp->in), close(tmp->out);
 		dup2(stdin_cpy, STDIN_FILENO), dup2(stdout_cpy, STDOUT_FILENO);

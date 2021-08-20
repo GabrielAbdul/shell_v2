@@ -37,11 +37,6 @@ void IO(command_t *command)
 		{
 			command->in = in;
 			command->out = open(command->out_file, APPEND_PERMS, 0644);
-
-		}
-		else if (command->type == HEREDOC)
-		{
-			/* TODO */
 		}
 		command->args[command->num_args - 1] = NULL;
 		command->args[command->num_args - 2] = NULL;
@@ -86,7 +81,7 @@ void set_args(command_t *node)
 			node->type = REDIR_LEFT;
 		else if (_strcmp(tokens, "<<") == 0)
 			node->type = HEREDOC;
-		
+
 		is_redirect_file = (node->type != SEMIC);
 	}
 	node->args[i] = NULL;
@@ -138,7 +133,7 @@ command_t *create_command_node(char *command, command_t *prev)
  */
 command_t *create_command_list(char *commands_string)
 {
-	int i;
+	int i, con, j;
 	char **commands;
 	command_t *command_node = NULL, *tmp, *head = NULL;
 
@@ -148,6 +143,16 @@ command_t *create_command_list(char *commands_string)
 	/* create node with info */
 	for (i = 0; commands[i]; i++)
 	{
+		for (j = 0; commands[i][j]; j++)
+		{
+			if (commands[i][j] == '#')
+			{
+				con = 1;
+				break;
+			}
+		}
+		if (con == 1)
+			continue;
 		if (i == 0)
 		{
 			head = create_command_node(commands[i], NULL);
