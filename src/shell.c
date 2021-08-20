@@ -35,5 +35,7 @@ int main(int ac, char **argv)
 			write(1, "$ ", 2);
 	}
 	free(line);
+	if (status != 0)
+		exit(2);
 	return (status);
 }
