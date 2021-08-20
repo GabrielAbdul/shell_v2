@@ -61,8 +61,13 @@ void set_args(command_t *node)
 	int i, is_redirect_file = false;
 	char *tokens;
 
-	for (i = 1; (tokens = strtok(NULL, " ")); i++)
+	for (i = 1; (tokens = strtok(NULL, " ")) != NULL; i++)
 	{
+		if (_strcmp(tokens, ";") == 0)
+		{
+			i--;
+			continue;
+		}
 		node->args[i] = tokens;
 		if (is_redirect_file)
 		{
@@ -81,7 +86,7 @@ void set_args(command_t *node)
 			node->type = REDIR_LEFT;
 		else if (_strcmp(tokens, "<<") == 0)
 			node->type = HEREDOC;
-
+		
 		is_redirect_file = (node->type != SEMIC);
 	}
 	node->args[i] = NULL;
@@ -111,7 +116,6 @@ command_t *create_command_node(char *command, command_t *prev)
 	node->args[0] = command;
 	/* add each command into our commands array */
 	set_args(node);
-
 
 	for (j = 0; j < ARRAY_SIZE(separators); j++)
 	{

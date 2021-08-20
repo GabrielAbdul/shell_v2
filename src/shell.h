@@ -94,9 +94,8 @@ char *_strcpy(char *dest, char *src);
 char *_strdup(char *s);
 char *_getenv(char *env_var);
 char *_setenv(char *env_var, char *value);
+void remove_semicolons(command_t *node);
 
 void free_commands(command_t *head);
-
-int shell_interactive(int ac, char **av, char **env);
 
 #endif /* SHELL_H */
