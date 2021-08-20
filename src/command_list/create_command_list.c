@@ -133,7 +133,7 @@ command_t *create_command_node(char *command, command_t *prev)
  */
 command_t *create_command_list(char *commands_string)
 {
-	int i, con, j;
+	int i, con = 0, j;
 	char **commands;
 	command_t *command_node = NULL, *tmp, *head = NULL;
 

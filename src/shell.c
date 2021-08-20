@@ -16,6 +16,7 @@ int main(int ac, char **argv)
 	command_t *commands;
 
 	(void)ac;
+	signal(SIGINT, sigint_handler);
 	line_no = 0;
 	running = true;
 	program_name = argv[0];

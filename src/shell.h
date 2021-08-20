@@ -1,6 +1,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+#include <signal.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -94,7 +95,7 @@ char *_strcpy(char *dest, char *src);
 char *_strdup(char *s);
 char *_getenv(char *env_var);
 char *_setenv(char *env_var, char *value);
-void remove_semicolons(command_t *node);
+void sigint_handler(int status);
 
 void free_commands(command_t *head);
 
