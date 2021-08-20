@@ -9,7 +9,7 @@
  */
 int main(int ac, char **argv)
 {
-	int status;
+	int status = 1;
 	int bytes;
 	char *line = NULL;
 	size_t line_size = 0;
