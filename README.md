@@ -44,7 +44,6 @@ $ echo "ls" | ./hsh
 | `setenv`                  | Set an environment variable                                         |
 | `unsetenv`                | Unset an environment variable                                       |
 | `cd`                      | Change directories                                                  |
-| `history`                 | Print command history                                               |
 
 ## Release History 🧾
 
