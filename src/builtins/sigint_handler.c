@@ -6,6 +6,6 @@
  */
 void sigint_handler(int status)
 {
-    (void)status;
-    write(1, "\n$ ", 3);
+	(void)status;
+	write(1, "\n$ ", 3);
 }
