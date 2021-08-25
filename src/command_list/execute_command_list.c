@@ -23,6 +23,8 @@ int execute_command_list(command_t *commands)
 			status = myexit(tmp->args);
 		else if (_strcmp(tmp->command, "env") == 0)
 			status = env(environ);
+		else if (_strcmp(tmp->command, "help") == 0)
+			status = help(tmp);
 		else if (!path)
 		{
 			status = 127;

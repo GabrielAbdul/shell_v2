@@ -96,6 +96,7 @@ char *_strdup(char *s);
 char *_getenv(char *env_var);
 char *_setenv(char *env_var, char *value);
 void sigint_handler(int status);
+int help(command_t *node);
 
 void free_commands(command_t *head);
 
